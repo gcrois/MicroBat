@@ -1,5 +1,5 @@
 # This file holds the URLs and what logic each should do.
-
+from flask import render_template
 from app import app
 
 # The '@' symbol demarks a 'decorator'
@@ -8,32 +8,23 @@ from app import app
 # execute when the url specified in the .routes() function
 # is evoked.
 
-# Right now this just creates a very simple html page.
+# Right now it returns a neat function you should research.
+# Essentially we can define templated HTML(and CSS) that Flask
+# will change dynamically for us. Check the arguments I've passed
+# in and look at app/templates/temp.html
 @app.route('/')
 @app.route('/home')
 def home():
-    return '''
-<html>
-    <head>
-        <title>Home Page</title>
-    </head>
-    <body>
-        <h1>Home Page for 'insert catchy project title here.'</h1>
-        <h2>We need to figure out if we're doing this all in HTML or JS and CSS too.</h2>
-    </body>
-</html>'''
+    text = "Homepage for cool project name"
+    # This function is cool. Research it.
+    return render_template('temp.html', title = 'User', text=text)
 
-# Generic webpage for all users.
-# no clue how we'd make a dynamic page for an ambiguous user.
+# For users.
 @app.route('/users')
 def users():
-    return '''
-<html>
-    <head>
-        <title>USER</title>
-    </head>
-    <body>
-        <h1>This is the webpage participants will see.</h1>
-        <h1>It needs to be ambigous so we can create it dynamically for each user.</h1>
-    </body>
-</html>'''
+    # Temporary user. We can change this dynamically.
+    user = "The Big J"
+    text = "User: " + user + '.'
+
+    # This function is cool. Research it.
+    return render_template('temp.html', title = 'User', text=text)
