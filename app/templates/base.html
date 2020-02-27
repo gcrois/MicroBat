@@ -1,0 +1,18 @@
+<!-- This is a base HTML Template. Both the user and host pages extend this one. -->
+<html>
+  <head>
+    <!-- Notice the double brackets. Flask can change 'title' dynamically with a function -->
+    <title>{{ title }}</title>
+  </head>
+  <body>
+
+    <!-- Header holds information Such as Number of connected users and number of responses -->
+    <p> {{ header }} </p>
+
+    <hr>
+
+    <!-- The thing we display for both the host and the user -->
+    <p> {% block content %}{% endblock %} </p>
+
+  </body>
+</html>
