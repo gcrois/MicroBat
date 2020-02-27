@@ -5,4 +5,4 @@ I've added a tenative file structure to be discussed at a later date.<br><br>
  \- John Alan Carmack, 2020  
    
 "I was totally right about Flask and trivality"<br> 
- \-John Carmack, Slightly Later.
+ \- John Alan Carmack, Slightly Later.
