@@ -1,4 +1,4 @@
-<!-- This is a base HTML Template. Both the user and host pages extend this one. -->
+<!-- This is a base HTML Template. All other pages extend this one. -->
 <html>
   <head>
     <!-- Notice the double brackets. Flask can change 'title' dynamically with a function -->
@@ -7,10 +7,24 @@
   <body>
 
     <!-- Header holds information Such as Number of connected users and number of responses -->
-    <p> {{ header }} </p>
-
+    <div>
+        {{ header }}
+        <a href="/home">Home</a> //
+        <a href="/host">Host a Session</a> //
+        <a href="/join">Join Session</a>
+    </div>
     <hr>
-
+    <!-- This is a variable declaration with jinja2 -->
+    <!-- get_flashed_messages() returns a list of strings -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <u1>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </u1>
+    {% endif %}
+    {% endwith %}
     <!-- The thing we display for both the host and the user -->
     <p> {% block content %}{% endblock %} </p>
 
