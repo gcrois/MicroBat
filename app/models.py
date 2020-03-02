@@ -5,9 +5,23 @@
 
 # We're using SQLALCHEMY ORM if you want to read the docs.
 
-from app import dataBase as db
+from app import dataBase as db, login
+# This allows us to generate and authenticate a hashable password
+from werkzeug.security import check_password_hash, generate_password_hash
 
-class User(db.Model):
+# This is a no fuss base model that does everything flask_login wants without
+# ruining everything else.
+from flask_login import UserMixin
+
+# We're about to use our database for the very first time guys.
+# *wipes away tear*
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
+class User(UserMixin, db.Model):
     # Primary Key means this is a unique value - Meaning all
     # users in our database will be assigned a unique ID.
     id = db.Column(db.Integer, primary_key=True)
@@ -22,6 +36,13 @@ class User(db.Model):
     # The short and sweet is we can now call user.answers and get a list of answers.
     # backref allows us to call answer.user to return the user who gave that answer.
     answers = db.relationship('Answer', backref='user', lazy=True)
+
+    # Password processing
+    def hash_password(self, password):
+        self.passHash = generate_password_hash(password)
+
+    def decode_password(self, password):
+        return check_password_hash(self.passHash, password)
 
     # This is just a debugging helper.
     # It just tells python's print() method how

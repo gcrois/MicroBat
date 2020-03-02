@@ -4,9 +4,14 @@ from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
+# This is how we manage user login
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config.from_object(Config)
+login = LoginManager(app)
+# This tells the login object the veiw function that logs users in.
+login.login_view = 'join'
 
 # Here's our database
 dataBase = SQLAlchemy(app)

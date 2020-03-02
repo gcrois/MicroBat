@@ -11,7 +11,11 @@
         {{ header }}
         <a href="/home">Home</a> //
         <a href="/host">Host a Session</a> //
-        <a href="/join">Join Session</a>
+        {% if current_user.is_anonymous %}
+          <a href="/join">Join Session</a>
+        {% else %}
+          <a href="/logout">Leave Session</a>
+        {% endif %}
     </div>
     <hr>
     <!-- This is a variable declaration with jinja2 -->
