@@ -1,0 +1,16 @@
+We've already gotten a lot done. My rubric is for future tasks.
+
+points     future task
+15         Develop webforms and databse tables for polls.
+15         Develop python script to generate poll from input file.
+10         Commenting/Documentation.
+
+
+1: Time log:
+   -20+ hours on learning Flask and various libraries for dealing with databases
+    and html/webforms (No joke. Flask is complicated).
+   -4+ on In person meetings with Gregory to discuss app structure and code review.
+   -~1 in Lab to discuss this document and future documentation.
+
+2: Users can now log in and register for the polling app.
+3: https://github.com/gcrois/MicroBat
