@@ -1,0 +1,15 @@
++5  Back end works cross-platform
++10 Server functions as intended
++5  Front end looks pretty
++10 Front end works
++5  Seamless client-server interaction
++5  Style and formatting
+
+Time spent:
+SEGMENTATION FAULT
+
+Compilable task:
+Make poll communicate with server
+
+Repo:
+https://github.com/gcrois/MicroBat
