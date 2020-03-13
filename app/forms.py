@@ -1,12 +1,38 @@
 # This is where we store web forms.
 # Things like the join session form for users.
+from app.models import User
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, EqualTo, ValidationError
 
-# Webform for joining a session.
+
 class JoinSessionForm(FlaskForm):
+    ''' Webform for joining a session. All the info on this can be found in the
+        wtforms docs '''
+
     user = StringField("User", validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     sessionID = IntegerField('Session ID', validators=[DataRequired()])
     joinSession = SubmitField('Join Session')
+
+
+class RegisterForm(FlaskForm):
+        ''' Form for new users to register. '''
+
+        user = StringField("User", validators=[DataRequired()])
+        password = PasswordField('Password', validators=[DataRequired()])
+        # This is just the cannonical 'confirm password' field.
+        confirmPass = PasswordField(
+            'Re-enter Password', validators=[DataRequired(), EqualTo('password')])
+        register = SubmitField('Register')
+
+        # Unfortunately we won't support duplicate usernames.
+        # This function queries the database to ensure the entered
+        # username isn't already taken.
+
+        # This is a pretty interesting function
+        # and funtions of the form validate_<fieldname> a a cool peice of wtforms
+        def validate_user(self, user):
+            u = User.query.filter_by(name = user.data).first()
+            if u:
+                raise ValidationError('Username unavailable.')

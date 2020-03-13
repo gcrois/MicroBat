@@ -1,12 +1,8 @@
-<!-- This is our first inherited HTML page -->
-<!-- It's really ugly for now, but I'm sure Tim or Greg can make it pretty with CSS -->
+<!-- Webform for new user registration -->
 
 {% extends "base.html" %}
 
-<!-- Uses a bunch of jinja stuff. Mostly copied from web and jinja docs-->
-<!-- It just essentially relies on wtforms and jinja to render forms instead of using HTML -->
 {% block content %}
-  <p>New users register <a href="/register">here.</a></p>
   <form action="" method="post" novalidate>
       {{ form.hidden_tag() }}
       <p>
@@ -28,16 +24,16 @@
       </p>
 
       <p>
-        {{ form.sessionID.label }}<br>
-        {{ form.sessionID(size=32) }}
+        {{ form.confirmPass.label }}<br>
+        {{ form.confirmPass(size=32) }}
 
-        {% for error in form.sessionID.errors %}
+        {% for error in form.confirmPass.errors %}
           <span style="color : red;">[{{ error}}]</span>
         {% endfor %}
       </p>
 
       <p>
-        {{ form.joinSession() }}
+        {{ form.register() }}
       </p>
   </form>
 {% endblock %}

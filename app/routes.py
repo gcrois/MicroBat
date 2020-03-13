@@ -1,7 +1,8 @@
 # This file holds the URLs and what logic each should do.
 from flask import render_template, flash, redirect
 from app import app
-from app.forms import JoinSessionForm
+from app import dataBase as db
+from app.forms import JoinSessionForm, RegisterForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 # The '@' symbol demarks a 'decorator'
@@ -41,6 +42,30 @@ def users():
 
     # This function is cool. Research it.
     return render_template('base.html', title = 'user', header = header)
+
+# Register a new user
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # If the user is already logged in and they try to go back to login
+    # We just send them on their way.
+    if current_user.is_authenticated:
+        return redirect('/user')
+
+    form = RegisterForm()
+    header = 'Register'
+
+    if form.validate_on_submit():
+        # Here we're building a new User object and
+        # adding them to our database
+        user = User(name = form.user.data)
+        user.hash_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+
+        flash("Yay! You're registered!")
+        return redirect('/join')
+
+    return render_template('register.html', title = 'Register2', header = header, form = form)
 
 # Login. We user a lot of cool libraries and extensions for this.
 @app.route('/join', methods=['GET', 'POST'])
