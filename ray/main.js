@@ -1,9 +1,11 @@
+let row = 0;
 function makeColor() {
   var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
   for (var i = 0; i < imageData.width; i++) {
-    setPixel(imageData, i, 0, 255, 100, 0);
+    setPixel(imageData, i, row, 255, 100, 0);
   }
   context.putImageData(imageData, 0, 0);
+  row++;
 }
 
 
