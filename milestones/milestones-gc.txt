@@ -19,3 +19,8 @@ to the canvas.
 
 Repo:
 https://github.com/gcrois/MicroBat
+
+Short report:
+This project is going to be a lot of fun! I think that we have a pretty
+creative project with a lot of different demos and moving parts. I can't
+wait for it to all come together exactly as we expect...
