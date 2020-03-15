@@ -1,3 +1,5 @@
+Rubric for entire project (based on polling demo):
+
 +5  Back end works cross-platform
 +10 Server functions as intended
 +5  Front end looks pretty
@@ -6,10 +8,19 @@
 +5  Style and formatting
 
 Time spent:
-SEGMENTATION FAULT
+3/9/20  - 2hr Worked with John on polling demo, met with group (in lab)
+3/10/20 - 2hr met with Timothy about game; studied js
+3/13/20 - 2hr studied js and made canvas demo
 
 Compilable task:
-Make poll communicate with server
+Begin raytracing demo with functional interactive javascript canvas.
+For this version, press the button in ray/index.html to add a row of color
+to the canvas.
 
 Repo:
 https://github.com/gcrois/MicroBat
+
+Short report:
+This project is going to be a lot of fun! I think that we have a pretty
+creative project with a lot of different demos and moving parts. I can't
+wait for it to all come together exactly as we expect...
