@@ -1,8 +1,8 @@
 # This file holds the URLs and what logic each should do.
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, url_for
 from app import app
 from app import dataBase as db
-from app.forms import JoinSessionForm, RegisterForm
+from app.forms import JoinSessionForm, RegisterForm, HostForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 # The '@' symbol demarks a 'decorator'
@@ -19,17 +19,48 @@ from app.models import User
 @app.route('/home')
 def home():
     header = "Homepage for Microbat"
-
     # This function is cool. Research it.
     return render_template('base.html', title = 'Home', header = header)
 
 # Page for the hosting device.
-@app.route('/host')
+@app.route('/host', methods=['GET', 'POST'])
 def host():
     header = "Hosting page for Microbat"
 
+    form = HostForm()
+
+    if form.validate_on_submit():
+        if form.poll.data:
+            return redirect(url_for('hostPoll'))
+        if form.greg.data:
+            return redirect(url_for('greg'))
+        if form.tim.data:
+            return redirect(url_for('tim'))
+
+
     # This function is cool. Research it.
-    return render_template('base.html', title = 'Host', header = header)
+    return render_template('host.html', title = 'Host', header = header, form=form)
+
+# This is the route for hosting a poll
+@app.route('/host_poll')
+def hostPoll():
+    header = "Here's where hosts will enter polling stuff."
+
+    return render_template('base.html', title = 'Host a Poll', header = header)
+
+# These are the routes for your guy's stuff.
+@app.route('/greg')
+def greg():
+    header = "Greg's Thing."
+
+    return render_template('base.html', title = 'Greg', header = header)
+
+@app.route('/tim')
+def tim():
+    header = "Tim's thing."
+
+    return render_template('base.html', title = 'Tim', header = header)
+
 
 # For users.
 # Must be logged in to veiw. That's what the second decorator does.
