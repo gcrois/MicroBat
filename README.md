@@ -6,3 +6,6 @@ I've added a tenative file structure to be discussed at a later date.<br><br>
    
 "I was totally right about Flask and trivality"<br> 
  \- John Alan Carmack, Slightly Later.
+
+"Okay the poll isn't going to be trival."<br> 
+ \- John Alan Carmack, Slightly Laterer.
