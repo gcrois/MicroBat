@@ -1,0 +1,37 @@
+<!-- Jinja HTML for building a poll to be hosted -->
+
+{% extends "base.html" %}
+
+{% block content %}
+  <head>
+
+  </head>
+  <form action="" method="post" novalidate>
+
+    <p>
+      {{ form.sessionID.label }}<br>
+      {{ form.sessionID() }}
+    </p>
+
+    <p>
+      {{ form.questionText.label }}<br>
+      {{ form.questionText() }}
+    </p>
+
+    <p>
+      {{ form.multipleResponse.label }}<br>
+      {{ form.multipleResponse() }}
+    </p>
+
+    <button type="button" id="addAnswer">Add Answer</button>
+
+    <p>
+      {{ form.answers() }}
+    </p>
+
+    <p>
+      {{ form.submit() }}
+    </p>
+
+  </form>
+{% endblock %}

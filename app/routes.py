@@ -2,7 +2,7 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app import dataBase as db
-from app.forms import JoinSessionForm, RegisterForm, HostForm
+from app.forms import HostForm, PollForm, RegisterForm, JoinSessionForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 # The '@' symbol demarks a 'decorator'
@@ -20,7 +20,7 @@ from app.models import User
 def home():
     header = "Homepage for Microbat"
     # This function is cool. Research it.
-    return render_template('base.html', title = 'Home', header = header)
+    return render_template('base.html', title='Home', header=header)
 
 # Page for the hosting device.
 @app.route('/host', methods=['GET', 'POST'])
@@ -39,27 +39,29 @@ def host():
 
 
     # This function is cool. Research it.
-    return render_template('host.html', title = 'Host', header = header, form=form)
+    return render_template('host.html', title='Host', header=header, form=form)
 
 # This is the route for hosting a poll
 @app.route('/host_poll')
 def hostPoll():
     header = "Here's where hosts will enter polling stuff."
 
-    return render_template('base.html', title = 'Host a Poll', header = header)
+    form = PollForm()
+
+    return render_template('create_poll.html', title='Host a Poll', header=header, form=form)
 
 # These are the routes for your guy's stuff.
 @app.route('/greg')
 def greg():
     header = "Greg's Thing."
 
-    return render_template('base.html', title = 'Greg', header = header)
+    return render_template('base.html', title='Greg', header=header)
 
 @app.route('/tim')
 def tim():
     header = "Tim's thing."
 
-    return render_template('base.html', title = 'Tim', header = header)
+    return render_template('base.html', title='Tim', header=header)
 
 
 # For users.
@@ -72,7 +74,7 @@ def users():
     header = "User: " + user
 
     # This function is cool. Research it.
-    return render_template('base.html', title = 'user', header = header)
+    return render_template('base.html', title='user', header=header)
 
 # Register a new user
 @app.route('/register', methods=['GET', 'POST'])
@@ -96,7 +98,7 @@ def register():
         flash("Yay! You're registered!")
         return redirect('/join')
 
-    return render_template('register.html', title = 'Register2', header = header, form = form)
+    return render_template('register.html', title='Register2', header=header, form=form)
 
 # Login. We user a lot of cool libraries and extensions for this.
 @app.route('/join', methods=['GET', 'POST'])
@@ -120,7 +122,7 @@ def join():
         login_user(user)
         return redirect('/user')
 
-    return render_template('join.html', title = 'Join Session', header = header, form = form)
+    return render_template('join.html', title='Join Session', header=header, form=form)
 
 # Logout
 @app.route('/logout')
