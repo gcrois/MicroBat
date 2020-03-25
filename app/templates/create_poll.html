@@ -3,9 +3,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <head>
 
-  </head>
   <form action="" method="post" novalidate>
 
     <p>
@@ -23,10 +21,11 @@
       {{ form.multipleResponse() }}
     </p>
 
-    <button type="button" id="addAnswer">Add Answer</button>
-
     <p>
-      {{ form.answers() }}
+      Answers<br>
+      {% for answer in form.answers %}
+        {{ answer.form.answerText() }}<br><br>
+      {% endfor %}
     </p>
 
     <p>

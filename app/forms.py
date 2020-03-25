@@ -25,7 +25,7 @@ class PollForm(FlaskForm):
     multipleResponse = BooleanField('Hide Results', default="checked")
     submit = SubmitField('Post poll')
 
-    answers = FieldList(FormField(AnswerForm), min_entries = 1)
+    answers = FieldList(FormField(AnswerForm), min_entries = 4)
 
 ####  These are for logging in and registering users  ####
 class JoinSessionForm(FlaskForm):

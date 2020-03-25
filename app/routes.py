@@ -42,9 +42,9 @@ def host():
     return render_template('host.html', title='Host', header=header, form=form)
 
 # This is the route for hosting a poll
-@app.route('/host_poll')
+@app.route('/host_poll', methods=['GET', 'POST'])
 def hostPoll():
-    header = "Here's where hosts will enter polling stuff."
+    header = "Enter your desired poll!"
 
     form = PollForm()
 
