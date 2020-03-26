@@ -20,13 +20,31 @@ from flask_login import UserMixin
 def load_user(id):
     return User.query.get(int(id))
 
+class Session(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    session_id = db.Column(db.String(64), index=True, unique=True)
+    poll_id = db.Column(db.Integer, db.ForeignKey('poll.id'))
+
+    users = db.relationship('User', backref='session', lazy=True)
+    poll = db.relationship("Poll", uselist=False, back_populates='session')
+
+class Poll(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    question = db.Column(db.String(64), index=True)
+    session = db.relationship("Session", uselist=False, back_populates='poll')
+
+    # responses
+    a = db.Column(db.String(140))
+    b = db.Column(db.String(140))
+    c = db.Column(db.String(140))
+    d = db.Column(db.String(140))
 
 class User(UserMixin, db.Model):
     # Primary Key means this is a unique value - Meaning all
     # users in our database will be assigned a unique ID.
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
-    session = db.Column(db.Integer, index=True)
+    session_id = db.Column(db.Integer, db.ForeignKey('session.id'), nullable=True)
     passHash = db.Column(db.String(128))
     # Each user is going to have some number of answers
     # associated with them. This line links the user table to the answer table
@@ -60,3 +78,5 @@ class Answer(db.Model):
 
     def __repr__(self):
         return 'Answer: {}'.format(self.ans)
+
+db.create_all()

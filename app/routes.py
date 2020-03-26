@@ -4,7 +4,7 @@ from app import app
 from app import dataBase as db
 from app.forms import HostForm, PollForm, RegisterForm, JoinSessionForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Session, Poll
 # The '@' symbol demarks a 'decorator'
 # They simply modify a function in a desirable way.
 # These simply tell the functions that follow them to
@@ -114,12 +114,22 @@ def join():
     # More wtform stuff. Just read the docs.
     if form.validate_on_submit():
         user = User.query.filter_by(name=form.user.data).first()
+        session = Session.query.filter_by(session_id = form.session.ID.data)
         # If the user isn't in the table, or they entered the wrong pass
         if user is None or not user.decode_password(form.password.data):
             # This is Flask stuff. It just 'flashes' a message to the user.
             flash('Invalid username or password!')
             return redirect('/join')
+
+        # If the session doesn't exist
+        if session is None:
+            flash('Invalid Session!')
+            return redirect('/join')
+
+        # Log the user in and add them to the session.
         login_user(user)
+        user.session = session
+        
         return redirect('/user')
 
     return render_template('join.html', title='Join Session', header=header, form=form)
