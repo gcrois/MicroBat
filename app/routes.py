@@ -48,7 +48,41 @@ def hostPoll():
 
     form = PollForm()
 
+    print("We're in host poll")
+
+    if form.validate_on_submit():
+        # We need to create the session and the poll, then link them
+        # together.
+        print("Form submitted")
+        sesh = Session(session_id = form.sessionID.data)
+        poll = Poll(question = form.questionText.data)
+
+        poll.a = form.a.data
+        poll.b = form.b.data
+        poll.c = form.c.data
+        poll.d = form.d.data
+
+        # Link them
+        poll.session = sesh
+        sesh.poll = poll
+
+        db.session.add(sesh)
+        db.session.commit()
+
+        db.session.add(poll)
+        db.session.commit()
+
+        flash("Generating poll!")
+        return redirect('/pollData')
+
     return render_template('create_poll.html', title='Host a Poll', header=header, form=form)
+
+@app.route('/pollData')
+def pollData():
+    header = "Polling Data"
+
+    return render_template('base.html', title='Data', header=header)
+
 
 # These are the routes for your guy's stuff.
 @app.route('/greg')
@@ -114,7 +148,7 @@ def join():
     # More wtform stuff. Just read the docs.
     if form.validate_on_submit():
         user = User.query.filter_by(name=form.user.data).first()
-        session = Session.query.filter_by(session_id = form.session.ID.data)
+        session = Session.query.filter_by(session_id = form.sessionID.data).first()
         # If the user isn't in the table, or they entered the wrong pass
         if user is None or not user.decode_password(form.password.data):
             # This is Flask stuff. It just 'flashes' a message to the user.
@@ -129,7 +163,7 @@ def join():
         # Log the user in and add them to the session.
         login_user(user)
         user.session = session
-        
+
         return redirect('/user')
 
     return render_template('join.html', title='Join Session', header=header, form=form)

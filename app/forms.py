@@ -13,19 +13,17 @@ class HostForm(FlaskForm):
     greg = SubmitField('Gregs thing')
     tim = SubmitField('Tims thing')
 
-####  All of these are for the poll  ####
-class AnswerForm(FlaskForm):
-    ''' Webform for answers to a poll. '''
-    answerText = StringField("Answer:", validators=[DataRequired()])
 
 class PollForm(FlaskForm):
     ''' Webform for creating a poll. '''
     sessionID = IntegerField('Session ID', validators=[DataRequired()])
     questionText = StringField('Question', validators=[DataRequired()])
-    multipleResponse = BooleanField('Hide Results', default="checked")
     submit = SubmitField('Post poll')
 
-    answers = FieldList(FormField(AnswerForm), min_entries = 4)
+    a = StringField('Response A', validators=[DataRequired()])
+    b = StringField('Response B', validators=[DataRequired()])
+    c = StringField('Response C', validators=[DataRequired()])
+    d = StringField('Response D', validators=[DataRequired()])
 
 ####  These are for logging in and registering users  ####
 class JoinSessionForm(FlaskForm):

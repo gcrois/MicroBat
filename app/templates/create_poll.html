@@ -3,9 +3,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
   <form action="" method="post" novalidate>
-
+    {{ form.hidden_tag() }}
     <p>
       {{ form.sessionID.label }}<br>
       {{ form.sessionID() }}
@@ -14,19 +13,37 @@
     <p>
       {{ form.questionText.label }}<br>
       {{ form.questionText() }}
-    </p>
-
-    <p>
-      {{ form.multipleResponse.label }}<br>
-      {{ form.multipleResponse() }}
-    </p>
-
-    <p>
-      Answers<br>
-      {% for answer in form.answers %}
-        {{ answer.form.answerText() }}<br><br>
+      {% for error in form.questionText.errors %}
+        <span style="color : red;">[{{ error}}]</span>
       {% endfor %}
     </p>
+
+    <p>
+      {{ form.a.label }}
+      {{ form.a() }}
+      {% for error in form.a.errors %}
+        <span style="color : red;">[{{ error}}]</span>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.b.label }}
+      {{ form.b() }}
+    </p>
+
+    <p>
+      {{ form.c.label }}
+      {{ form.c() }}
+    </p>
+
+    <p>
+      {{ form.d.label }}
+      {{ form.d() }}
+    </p>
+
+    {% for error in form.errors %}
+      <span style="color : red;">[{{ error}}]</span>
+    {% endfor %}
 
     <p>
       {{ form.submit() }}
