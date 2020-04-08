@@ -1,0 +1,22 @@
+<!-- Webform for hosts to refresh and close polls. -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+      {{ question }}<br>
+    </p>
+
+    <div>
+      {% for d in data %}
+        {{ d[0] }}: {{ d[1] }}<br>
+      {% endfor %}
+    </div>
+
+    {{ form.refresh() }}<br>
+    {{ form.close() }}<br>
+</form>
+
+{% endblock %}

@@ -13,7 +13,7 @@ class HostForm(FlaskForm):
     greg = SubmitField('Gregs thing')
     tim = SubmitField('Tims thing')
 
-
+####  These are the forms for the polling app ####
 class PollForm(FlaskForm):
     ''' Webform for creating a poll. '''
     sessionID = IntegerField('Session ID', validators=[DataRequired()])
@@ -24,6 +24,23 @@ class PollForm(FlaskForm):
     b = StringField('Response B', validators=[DataRequired()])
     c = StringField('Response C', validators=[DataRequired()])
     d = StringField('Response D', validators=[DataRequired()])
+
+class ResponseForm(FlaskForm):
+    ''' Webform for recieving answers from users '''
+
+    a = BooleanField()
+    b = BooleanField()
+    c = BooleanField()
+    d = BooleanField()
+
+    submit = SubmitField('Submit Response(s)')
+
+class DataForm(FlaskForm):
+    ''' This seriously just chooses between closing the poll
+        and refreshing the data '''
+
+    refresh = SubmitField("Refresh Data")
+    close = SubmitField("Close Polling")
 
 ####  These are for logging in and registering users  ####
 class JoinSessionForm(FlaskForm):

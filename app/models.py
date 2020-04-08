@@ -39,6 +39,12 @@ class Poll(db.Model):
     c = db.Column(db.String(140))
     d = db.Column(db.String(140))
 
+    # Number of responses per response
+    a_num = db.Column(db.Integer)
+    b_num = db.Column(db.Integer)
+    c_num = db.Column(db.Integer)
+    d_num = db.Column(db.Integer) 
+
 class User(UserMixin, db.Model):
     # Primary Key means this is a unique value - Meaning all
     # users in our database will be assigned a unique ID.
