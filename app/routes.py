@@ -111,13 +111,13 @@ def pollData(sesh_id):
     print(poll.a_num)
 
     if poll.a_num > 0:
-        a_perc = total_count / poll.a_num
+        a_perc = (poll.a_num / total_count)*100
     if poll.b_num > 0:
-        b_perc = total_count / poll.b_num
+        b_perc = (poll.b_num / total_count)*100
     if poll.c_num > 0:
-        c_perc = total_count / poll.c_num
+        c_perc = (poll.c_num / total_count)*100
     if poll.d_num > 0:
-        d_perc = total_count / poll.d_num
+        d_perc = (poll.d_num / total_count)*100
 
     data = [
         (poll.a, a_perc),
