@@ -2,6 +2,7 @@
 <html>
   <head>
     <!-- Notice the double brackets. Flask can change 'title' dynamically with a function -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>{{ title }}</title>
   </head>
   <body>
