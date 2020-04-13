@@ -2,7 +2,7 @@
 
 Startup Guide:
 
-So. You want to start a MicroBat server. I was once like you. Young and full of hope. I'll help you know, but just know. There's no help on the other side.
+So. You want to start a MicroBat server. I was once like you. Young and full of hope. I'll help you know, but just know: there's no help on the other side.
 
 First, you want to install the dependencies. Make sure you have python3_flask installed (using your appropriate package manager).
 
@@ -21,6 +21,15 @@ sudo ufw allow 5000/tcp
 ```
 
 Make sure your port is forwarded
+
+Optionally, register your ip through a domain name registration website (such as GoogleDomains, GoDaddy, etc.)
+
+Now, go to the root directory of the project and run
+```
+./start.sh
+```
+
+Good luck.
 
 HALL OF QUOTES:
 
