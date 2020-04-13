@@ -1,3 +1,4 @@
-app/__pycache__
-app/app.db
+# Database, pycaches, and virtual environments should be specific to each system
+*.db
 *__pycache__
+venv*
