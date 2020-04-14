@@ -3,13 +3,13 @@
   <head>
     <!-- Notice the double brackets. Flask can change 'title' dynamically with a function -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap" rel="stylesheet">
     <title>{{ title }}</title>
   </head>
   <body>
 
     <!-- Header holds information Such as Number of connected users and number of responses -->
-    <div>
-        {{ header }}
+    <div class="nav">
         <a href="/home">Home</a> //
         <a href="/host">Host a Session</a> //
         {% if current_user.is_anonymous %}
@@ -18,6 +18,7 @@
           <a href="/logout">Leave Session</a>
         {% endif %}
     </div>
+    {{ header }}
     <hr>
     <!-- This is a variable declaration with jinja2 -->
     <!-- get_flashed_messages() returns a list of strings -->
@@ -32,6 +33,11 @@
     {% endwith %}
     <!-- The thing we display for both the host and the user -->
     <p> {% block content %}{% endblock %} </p>
+    <div class="square dorange"></div>
+    <div class="square lblue"></div>
+    <div class="square lorange"></div>
+    <div class="square pinkle"></div>
+    <div class="square turq"></div>
 
   </body>
 </html>

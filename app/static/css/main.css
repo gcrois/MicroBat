@@ -1,0 +1,45 @@
+:root {
+  --dorange: #E27D60;
+  --lblue:   #85CDCA;
+  --lorange: #E8A87C;
+  --pinkle:  #C38D9E;
+  --turq:    #41B3A3;
+}
+
+body {
+  font-family: 'Baloo Tamma 2', cursive;
+  background-color: var(--lblue);
+}
+
+.nav {
+  text-align: center;
+  color:
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  border-style: solid;
+  border-width: thin;
+  margin-bottom: 3px;
+}
+
+.dorange {
+  background-color: var(--dorange);
+}
+
+.lblue {
+  background-color: var(--lblue);
+}
+
+.lorange {
+  background-color: var(--lorange);
+}
+
+.pinkle {
+  background-color: var(--pinkle);
+}
+
+.turq {
+  background-color: var(--turq);
+}
