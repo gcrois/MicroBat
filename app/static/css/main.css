@@ -4,6 +4,13 @@
   --lorange: #E8A87C;
   --pinkle:  #C38D9E;
   --turq:    #41B3A3;
+  --dark:    #324d4c;
+  --llblue:  #9df2f0;
+}
+
+@font-face {
+  font-family: Bebas;
+  src: url(../fonts/BebasNeue-Book.ttf);
 }
 
 body {
@@ -12,8 +19,7 @@ body {
 }
 
 .nav {
-  text-align: center;
-  color:
+  text-align: center
 }
 
 .square {
@@ -42,4 +48,58 @@ body {
 
 .turq {
   background-color: var(--turq);
+}
+
+a, a:visited, a:link, a:active {
+  color: var(--dark);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration-color: var(--turq);
+  text-decoration: underline;
+}
+
+input {
+  background-color: var(--llblue);
+  color: var(--dark);
+}
+
+.header {
+  text-align: center;
+  align-content: center;
+  font-size: 8vw;
+  font-family: Bebas;
+}
+
+.header.up {
+  font-size: 10vw;
+}
+
+.logo {
+  width: 8vw;
+  height: 8vw;
+  fill: #94d31b;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo:hover {
+  fill: #94d31c;
+  transform: rotate(10deg);
+}
+
+.subhead {
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.top {
+  width: 100%;
+  background-color: var(--lorange);
+  margin: -10px -10px -10px 0;
+}
+
+.hov:hover, .header.up:hover{
+  color: gray;
 }

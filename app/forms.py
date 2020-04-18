@@ -16,7 +16,7 @@ class HostForm(FlaskForm):
 ####  These are the forms for the polling app ####
 class PollForm(FlaskForm):
     ''' Webform for creating a poll. '''
-    sessionID = IntegerField('Session ID', validators=[DataRequired()])
+    sessionID = IntegerField('Session ID (Numeric)', validators=[DataRequired()])
     questionText = StringField('Question', validators=[DataRequired()])
     submit = SubmitField('Post poll')
 
