@@ -13,6 +13,12 @@ pip3 install -r dependencies.txt
 
 This will install all of the python libraries required to run MicroBat.
 
+To run a local instance run the following:
+
+```
+./start.sh local
+```
+
 If you want to make this a public server (unsecure! but lots of fun :-))
 
 Allow the port to be opened
@@ -26,7 +32,7 @@ Optionally, register your ip through a domain name registration website (such as
 
 Now, go to the root directory of the project and run
 ```
-./start.sh
+./start.sh external
 ```
 
 Good luck.
