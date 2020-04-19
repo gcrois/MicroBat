@@ -6,9 +6,13 @@ body, html {
   height: 100%;
   overflow-y: hidden;
   overflow-x: hidden;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
-body::before {
+body::after {
   content: "";
   background-image: url("money.gif");
   opacity: 0.3;
@@ -22,21 +26,27 @@ body::before {
 
 .readout {
   z-index: 2;
-  font-style: sans-serif;
   text-align: center;
   font-size: 40px;
+  text-transform: uppercase;
+  font-family: Arial, sans-serif;
+}
+
+.subtitle {
+  font-size: 20px;
 }
 
 table.ui {
-  margin-left: calc(50% - 250px);
+  margin-left: calc(50% - 300px);
   background-color: #28c432;
   height: 100px;
-  width: 500px;
+  max-width: 600px;
   position: fixed;
+  opacity: .9;
 }
 
-td.ui {
-  width: calc(500px / 3)
+td.readout {
+  min-width: calc(600px / 3);
 }
 
 #money {

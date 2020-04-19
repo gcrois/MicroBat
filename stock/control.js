@@ -44,6 +44,10 @@ function init() {
   updateAll();
 }
 
+
+//================================================================//
+// Changes visual slider for buy and sell order
+//================================================================//
 function set_sell(value) {
   sell_disp.style['height']      = value + 'vh';
   sell_slide.style['margin-top'] = 'calc(' + value + 'vh - 10vh)';
@@ -55,7 +59,21 @@ function set_buy(value) {
   buy_slide.style['margin-top'] = 'calc(' + (100 - value) + 'vh)';
 }
 
+
+//================================================================//
+// Changes visual slider for buy and sell order
+//================================================================//
+function purchase() {
+
+}
+
+
+//================================================================//
+// Sets readout to appropriate value rounded to the right precision
+// If parameter is given, set value
+//================================================================//
 function updateMoney(val = money){
+  money = val;
   money_count.innerHTML = "$" + val.toFixed(2);
 }
 
@@ -72,9 +90,13 @@ function updateSell(val = sell){
 }
 
 function updateStock(val = stocks){
-  stock_count.innerHTML = val.toFixed(2);
+  stock_count.innerHTML = val.toFixed(0);
 }
 
+
+//================================================================//
+// Update all readouts to current stored values
+//================================================================//
 function updateAll(){
   updateStock();
   updateBuy();
@@ -82,19 +104,10 @@ function updateAll(){
   updateMoney();
 }
 
-function getY(e) {
-	var posy = 0;
-	if (!e) var e = window.event;
-	if (e.pageY) 	{
-		posy = e.pageY;
-	}
-	else if (e.clientY) 	{
-		posy = e.clientY + document.body.scrollTop
-			+ document.documentElement.scrollTop;
-	}
-  return posy;
-}
 
+//================================================================//
+// Triggers consumption overlay and redirects page
+//================================================================//
 function consume() {
   let all = document.getElementById("overall");
   all.style.display = "block";
@@ -104,7 +117,10 @@ function consume() {
   }, 4840);
 }
 
-// DRAGGING FUNCTIONS
+//================================================================//
+// DRAGGING FUNCTIONS - followed example from
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
+//================================================================//
 function buyDragEnable(elmnt) {
   var cursorY = 0, newLoc = 0;
   if (document.getElementById(elmnt.id + "header")) {
