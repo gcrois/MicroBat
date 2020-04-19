@@ -4,6 +4,8 @@ body, html {
   background-repeat: no-repeat, repeat;
   margin: 0;
   height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 body::before {

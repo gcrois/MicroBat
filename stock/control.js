@@ -29,7 +29,7 @@ function init() {
 
   // set up events
   //buy_slide.addEventListener("mousedown", function() {adjust_buy()});
-  sell_slide.onmouseover = function() {updateMoney(--money)};
+  //sell_slide.onmouseover = function() {updateMoney(--money)};
 
   document.body.onmousedown = function() {
     mouseDown = 1;
@@ -39,6 +39,7 @@ function init() {
   }
 
   buyDragEnable(buy_slide);
+  sellDragEnable(sell_slide);
 
   updateAll();
 }
@@ -131,25 +132,85 @@ function buyDragEnable(elmnt) {
     cursorY = e.clientY;
     // set the element's new position:
     newPrice = 100 - ((cursorY) / window.innerHeight) * 100;
-    if (newPrice > 5 && newPrice < 100) {
-      // move both if adjacent
-      if (newPrice > (100 - sell)) {
-        // check that we aren't hiding sell
-        if ((100 - newPrice) > 5) {
+    // move both if adjacent
+    if (newPrice > (100 - sell)) {
+      // check that we aren't hiding sell
+      if ((100 - newPrice) > 5) {
+        updateBuy(newPrice);
+        updateSell(100 - newPrice);
+      }
+      else {
+        updateBuy(95);
+        updateSell(5);
+      }
+    }
+      // otherwise, just adjust buy
+      else {
+        if (newPrice > 5) {
           updateBuy(newPrice);
-          updateSell(100 - newPrice);
         }
         else {
-          updateBuy(95);
+          updateBuy(5);
+        }
+      }
+    }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+function sellDragEnable(elmnt) {
+  var cursorY = 0, newLoc = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    cursorY = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    cursorY = e.clientY;
+    // set the element's new position:
+    newPrice = ((cursorY) / window.innerHeight) * 100;
+    // move both if adjacent
+    if (newPrice > (100 - buy)) {
+      // check that we aren't hiding sell
+      if ((100 - newPrice) > 5) {
+        updateSell(newPrice);
+        updateBuy(100 - newPrice);
+      }
+      else {
+        updateBuy(5);
+        updateSell(95);
+      }
+    }
+      // otherwise, just adjust buy
+      else {
+        if (newPrice > 5) {
+          updateSell(newPrice);
+        }
+        else {
           updateSell(5);
         }
       }
-      // otherwise, just adjust buy
-      else {
-        updateBuy(newPrice);
-      }
     }
-  }
 
   function closeDragElement() {
     // stop moving when mouse button is released:
