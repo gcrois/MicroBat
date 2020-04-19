@@ -134,3 +134,57 @@ td.readout {
   background-size: cover;
   background-position: center;
 }
+
+.disp {
+  position: fixed;
+  display: block;
+  width: 80vw;
+  max-height: 80vh;
+  margin-top: 3.5vh;
+  margin-left: calc(calc(100vw - 84vw) / 2);
+  margin-bottom: 13vh;
+  z-index: 3;
+  background-size: cover;
+  background-position: center;
+  padding: 2vw;
+  background-color: white;
+  border-style: outset;
+  border-radius: 8px;
+  border-width: 8px;
+  overflow-y: auto;
+}
+
+.letter {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.letter.salutation {
+  font-size: 3.5vw;
+}
+
+.letter.text {
+  text-indent: 30px;
+}
+
+.letter.signature {
+  position: relative;
+}
+
+#sign {
+  display:inline;
+  margin-left: 3vw;
+  padding:0px;
+}
+
+#name {
+  display: inline;
+  width: 50vw;
+  border: 0;
+  border-bottom: solid;
+  background-color: lightgray;
+}
+
+#submit {
+  float: right;
+  margin-right: 5vw;
+}

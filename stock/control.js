@@ -6,11 +6,14 @@ var stocks = 0;
 var time = 5;
 var clock = 0;
 
-// utility variables for dragging
+// utility variables for dragging / interaction
 var buy_slide;
 var buy_disp;
 var sell_slide;
 var sell_disp;
+var sub_button;
+var sub_field;
+var intro_msg;
 
 // amount displayed
 var money_count;
@@ -24,8 +27,15 @@ var mouseDown = 0;
 var lose;
 var understand;
 
+// clock loop
+var clock_interval;
+
 function init() {
-  // Define important values
+  // Set all element variables
+  intro_msg = document.getElementById("instructions");
+  sub_button = document.getElementById("submit");
+  sub_field = document.getElementById("name");
+
   buy_slide  = document.getElementById("buy-drag");
   buy_disp   = document.getElementById("buy-disp");
   sell_slide = document.getElementById("sell-drag");
@@ -47,18 +57,40 @@ function init() {
   document.body.onmouseup = function() {
     mouseDown = 0;
   }
+  sub_button.onclick = function(){user_start()};
+
+  updateAll();
+}
+
+
+//================================================================//
+// User input gathered to start game
+//================================================================//
+function user_start() {
+  understand.play();
+
+  move_letter();
 
   buyDragEnable(buy_slide);
   sellDragEnable(sell_slide);
 
-  updateAll();
-
   // start clock
   let d = new Date();
   clock = d.getTime();
-  setInterval(function(){ clock_count(); }, 100);
+  clock_interval = setInterval(function(){ clock_count(); }, 100);
 }
 
+function move_letter(progress = 1) {
+  intro_msg.style["margin-top"] = (3.5 - (progress / 60 * 83.5)) + "vh";
+  if (progress == 60) {
+    intro_msg.style["display"] = "none";
+  }
+  else {
+    setTimeout(() => {
+      move_letter(++progress);
+    }, 30);
+  }
+}
 
 //================================================================//
 // Changes visual slider for buy and sell order
@@ -130,8 +162,9 @@ function clock_count() {
   var d = new Date();
   let diff = (d.getTime() - clock) / 1000;
   clock = d.getTime();
-  if (Math.abs((time - diff)) < .05) {
+  if ((time - diff) < .05) {
     tick();
+    clearInterval(clock_interval);
   }
   else {
     setTime(Math.max(time - diff, -99.9));
@@ -139,12 +172,20 @@ function clock_count() {
 }
 
 function tick() {
-  console.log("we're ticking!");
-
+  // reset clock
   setTime(Math.max(5, -99.9));
+
+  // check lose condition
   if (money <= 0) {
     consume();
   }
+
+  // wait for backend response
+  setTimeout(() => {
+    var d = new Date();
+    clock = d.getTime();
+    clock_interval = setInterval(function(){ clock_count(); }, 100);
+  }, 1000);
 }
 
 
@@ -157,11 +198,6 @@ function updateAll(){
   updateSell();
   updateMoney();
 }
-
-
-//================================================================//
-// Performs game tick
-//================================================================//
 
 //================================================================//
 // Triggers consumption overlay and redirects page
