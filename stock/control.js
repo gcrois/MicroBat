@@ -1,3 +1,4 @@
+// important per-user variables
 var money = 10;
 var buy = 30;
 var sell = 30;
@@ -5,11 +6,13 @@ var stocks = 0;
 var time = 30;
 var clock = 0;
 
+// utility variables for dragging
 var buy_slide;
 var buy_disp;
 var sell_slide;
 var sell_disp;
 
+// amount displayed
 var money_count;
 var buy_count;
 var sell_count;
@@ -136,6 +139,10 @@ function updateAll(){
   updateMoney();
 }
 
+
+//================================================================//
+// Performs game tick
+//================================================================//
 
 //================================================================//
 // Triggers consumption overlay and redirects page

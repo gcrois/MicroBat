@@ -24,6 +24,18 @@ body::after {
   z-index: -1;
 }
 
+body::before {
+  content: "";
+  background-color: white;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -2;
+}
+
 .readout {
   z-index: 2;
   text-align: center;
