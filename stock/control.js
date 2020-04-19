@@ -63,8 +63,14 @@ function set_buy(value) {
 //================================================================//
 // Changes visual slider for buy and sell order
 //================================================================//
-function purchase() {
+function purchase(price = buy, quant = 1) {
+  updateMoney(money - price * quant);
+  updateStock(stocks + quant);
+}
 
+function sell_stock(price = sell, quant = 1) {
+  updateMoney(money + price * quant);
+  updateStock(stocks - quant);
 }
 
 
@@ -90,6 +96,7 @@ function updateSell(val = sell){
 }
 
 function updateStock(val = stocks){
+  stocks = val;
   stock_count.innerHTML = val.toFixed(0);
 }
 
