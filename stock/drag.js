@@ -13,6 +13,8 @@ var buy_count;
 var sell_count;
 var stock_count;
 
+var mouseDown = 0;
+
 function init() {
   // Define important values
   buy_slide  = document.getElementById("buy-drag");
@@ -26,14 +28,27 @@ function init() {
   stock_count = document.getElementById("stocks");
 
   // set up events
-  buy_slide.onmouseover = function() {updateMoney(++money)};
+  buy_slide.addEventListener("mousedown", function() {adjust_buy()});
   sell_slide.onmouseover = function() {updateMoney(--money)};
 
+  document.body.onmousedown = function() {
+    mouseDown = 1;
+  }
+  document.body.onmouseup = function() {
+    mouseDown = 0;
+  }
 
-  // TEST
-  set_buy(30);
-  set_sell(30);
   updateAll();
+}
+
+function adjust_buy(e = window.event) {
+  console.log(Math.round(getY(e) / document.documentElement.clientHeight * 100));
+  updateBuy(100 - Math.round(getY(e) / document.documentElement.clientHeight * 100));
+  setTimeout( () => {
+    if (mouseDown == 1) {
+      adjust_buy(e);
+    }
+  }, 100);
 }
 
 function set_sell(value) {
@@ -70,4 +85,17 @@ function updateAll(){
   updateBuy();
   updateSell();
   updateMoney();
+}
+
+function getY(e) {
+	var posy = 0;
+	if (!e) var e = window.event;
+	if (e.pageY) 	{
+		posy = e.pageY;
+	}
+	else if (e.clientY) 	{
+		posy = e.clientY + document.body.scrollTop
+			+ document.documentElement.scrollTop;
+	}
+  return posy;
 }
