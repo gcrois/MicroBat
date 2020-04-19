@@ -3,7 +3,7 @@ var money = 10;
 var buy = 30;
 var sell = 30;
 var stocks = 0;
-var time = 30;
+var time = 5;
 var clock = 0;
 
 // utility variables for dragging
@@ -21,6 +21,9 @@ var timer;
 
 var mouseDown = 0;
 
+var lose;
+var understand;
+
 function init() {
   // Define important values
   buy_slide  = document.getElementById("buy-drag");
@@ -34,10 +37,10 @@ function init() {
   stock_count = document.getElementById("stocks");
   timer = document.getElementById("timer");
 
-  // set up events
-  //buy_slide.addEventListener("mousedown", function() {adjust_buy()});
-  //sell_slide.onmouseover = function() {updateMoney(--money)};
+  lose = new sound("you-lose.wav");
+  understand = new sound("high-level.wav");
 
+  // set up events
   document.body.onmousedown = function() {
     mouseDown = 1;
   }
@@ -80,13 +83,15 @@ function purchase(price = buy, quant = 1) {
   updateStock(stocks + quant);
 
   stock_count.style["color"] = "yellow";
-  console.log(time);
   setTimeout(() => { stock_count.style["color"] = "black";}, time * 1000);
 }
 
 function sell_stock(price = sell, quant = 1) {
   updateMoney(money + price * quant);
   updateStock(stocks - quant);
+
+  money_count.style["color"] = "yellow";
+  setTimeout(() => { money_count.style["color"] = "black";}, time * 1000);
 }
 
 
@@ -125,7 +130,21 @@ function clock_count() {
   var d = new Date();
   let diff = (d.getTime() - clock) / 1000;
   clock = d.getTime();
-  setTime(Math.max(time - diff, -99.9));
+  if (Math.abs((time - diff)) < .05) {
+    tick();
+  }
+  else {
+    setTime(Math.max(time - diff, -99.9));
+  }
+}
+
+function tick() {
+  console.log("we're ticking!");
+
+  setTime(Math.max(5, -99.9));
+  if (money <= 0) {
+    consume();
+  }
 }
 
 
@@ -151,8 +170,9 @@ function consume() {
   let all = document.getElementById("overall");
   all.style.display = "block";
   all.style["background-image"] = "url(\"consume.gif\")";
+  lose.play();
   setTimeout( () => {
-    window.location.replace("https://youtu.be/fpK36FZmTFY?t=73");
+    window.location.replace("https://www.merriam-webster.com/dictionary/loser");
   }, 4840);
 }
 
@@ -272,5 +292,23 @@ function sellDragEnable(elmnt) {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
+  }
+}
+
+//================================================================//
+// Audio player (from https://www.w3schools.com/graphics/game_sound.asp)
+//================================================================//
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
   }
 }
