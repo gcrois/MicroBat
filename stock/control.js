@@ -2,6 +2,8 @@ var money = 10;
 var buy = 30;
 var sell = 30;
 var stocks = 0;
+var time = 30;
+var clock = 0;
 
 var buy_slide;
 var buy_disp;
@@ -12,6 +14,7 @@ var money_count;
 var buy_count;
 var sell_count;
 var stock_count;
+var timer;
 
 var mouseDown = 0;
 
@@ -26,6 +29,7 @@ function init() {
   buy_count = document.getElementById("buy_order");
   sell_count = document.getElementById("sell_order");
   stock_count = document.getElementById("stocks");
+  timer = document.getElementById("timer");
 
   // set up events
   //buy_slide.addEventListener("mousedown", function() {adjust_buy()});
@@ -42,6 +46,11 @@ function init() {
   sellDragEnable(sell_slide);
 
   updateAll();
+
+  // start clock
+  let d = new Date();
+  clock = d.getTime();
+  setInterval(function(){ clock_count(); }, 100);
 }
 
 
@@ -66,6 +75,10 @@ function set_buy(value) {
 function purchase(price = buy, quant = 1) {
   updateMoney(money - price * quant);
   updateStock(stocks + quant);
+
+  stock_count.style["color"] = "yellow";
+  console.log(time);
+  setTimeout(() => { stock_count.style["color"] = "black";}, time * 1000);
 }
 
 function sell_stock(price = sell, quant = 1) {
@@ -100,6 +113,18 @@ function updateStock(val = stocks){
   stock_count.innerHTML = val.toFixed(0);
 }
 
+function setTime(val = time) {
+  time = val;
+  timer.innerHTML = val.toFixed(1);
+}
+
+function clock_count() {
+  var d = new Date();
+  let diff = (d.getTime() - clock) / 1000;
+  clock = d.getTime();
+  setTime(Math.max(time - diff, -99.9));
+}
+
 
 //================================================================//
 // Update all readouts to current stored values
@@ -123,6 +148,7 @@ function consume() {
     window.location.replace("https://youtu.be/fpK36FZmTFY?t=73");
   }, 4840);
 }
+
 
 //================================================================//
 // DRAGGING FUNCTIONS - followed example from

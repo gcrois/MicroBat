@@ -94,6 +94,20 @@ td.readout {
   opacity: .75;
 }
 
+.timer_box {
+  height: 50px;
+  width: 100px;
+  background-color: yellow;
+  display: block;
+  z-index: 2;
+  position: fixed;
+  margin-top: calc(100vh - 50px);
+  margin-left: calc(50vw - 50px);
+  text-align: center;
+  font-size: 35px;
+  padding-top: 5px;
+}
+
 #overall {
   position: fixed;
   display: none;
