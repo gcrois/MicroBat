@@ -1,6 +1,13 @@
 body, html {
+  background-image: url("emrich-compressed.gif");
+  background-position: center;
+  background-repeat: no-repeat;
   margin: 0;
-  background: white;
+  height: 100%;
+}
+
+body {
+
 }
 
 .readout {
@@ -32,6 +39,7 @@ td.ui {
   position: absolute;
   width: 100%;
   height: 20px;
+  opacity: 0.8;
 }
 
 .drag {
