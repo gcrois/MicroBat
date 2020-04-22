@@ -1,7 +1,7 @@
 // important per-user variables
 var money = 10;
 var buy = 30;
-var sell = 30;
+var sell = 70;
 var stocks = 0;
 var time = 5;
 var clock = 0;
@@ -96,19 +96,19 @@ function move_letter(progress = 1) {
 // Changes visual slider for buy and sell order
 //================================================================//
 function set_sell(value) {
-  sell_disp.style['height']      = value + 'vh';
-  sell_slide.style['margin-top'] = 'calc(' + value + 'vh - 10vh)';
+  sell_disp.style['height']      = (100 - value / (1/.9)) - 5 + 'vh';
+  sell_slide.style['margin-top'] = 'calc(' + (100 - value / (1/.9)) + 'vh - 15vh)';
 }
 
 function set_buy(value) {
-  buy_disp.style['height']      = value + 'vh';
-  buy_disp.style['margin-top']  = (100 - value) + 'vh';
-  buy_slide.style['margin-top'] = 'calc(' + (100 - value) + 'vh)';
+  buy_disp.style['height']      = value / (1/.9) + 5 + 'vh';
+  buy_disp.style['margin-top']  = (100 - value/ (1/.9) - 5) + 'vh';
+  buy_slide.style['margin-top'] = 'calc(' + (100 - value/ (1/.9) - 5) + 'vh)';
 }
 
 
 //================================================================//
-// Changes visual slider for buy and sell order
+// Functions for the various types of orders
 //================================================================//
 function purchase(price = buy, quant = 1) {
   updateMoney(money - price * quant);
@@ -215,6 +215,14 @@ function consume() {
 
 
 //================================================================//
+// Turns a cursor position into a usable integer
+//================================================================//
+function numFromSlide(pos, padding, max = 100, min = 0) {
+  return ((pos / window.innerHeight) / (1 - 2 * padding) - padding) * (max - min);
+}
+
+
+//================================================================//
 // DRAGGING FUNCTIONS - followed example from
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable
 //================================================================//
@@ -244,26 +252,26 @@ function buyDragEnable(elmnt) {
     // calculate the new cursor position:
     cursorY = e.clientY;
     // set the element's new position:
-    newPrice = 100 - ((cursorY) / window.innerHeight) * 100;
+    newPrice = 100 - numFromSlide(cursorY, .05);
     // move both if adjacent
-    if (newPrice > (100 - sell)) {
+    if (newPrice > (sell)) {
       // check that we aren't hiding sell
       if ((100 - newPrice) > 5) {
         updateBuy(newPrice);
-        updateSell(100 - newPrice);
+        updateSell(newPrice + .01);
       }
       else {
-        updateBuy(95);
-        updateSell(5);
+        updateBuy(99.99);
+        updateSell(100);
       }
     }
       // otherwise, just adjust buy
       else {
-        if (newPrice > 5) {
+        if (newPrice > 0) {
           updateBuy(newPrice);
         }
         else {
-          updateBuy(5);
+          updateBuy(0);
         }
       }
     }
@@ -301,26 +309,26 @@ function sellDragEnable(elmnt) {
     // calculate the new cursor position:
     cursorY = e.clientY;
     // set the element's new position:
-    newPrice = ((cursorY) / window.innerHeight) * 100;
+    newPrice = 100 - numFromSlide(cursorY, .05);
     // move both if adjacent
-    if (newPrice > (100 - buy)) {
+    if (newPrice < buy) {
       // check that we aren't hiding sell
-      if ((100 - newPrice) > 5) {
+      if ((newPrice - .01) > .01) {
         updateSell(newPrice);
-        updateBuy(100 - newPrice);
+        updateBuy(newPrice - .01);
       }
       else {
-        updateBuy(5);
-        updateSell(95);
+        updateBuy(0);
+        updateSell(.01);
       }
     }
       // otherwise, just adjust buy
       else {
-        if (newPrice > 5) {
+        if (newPrice < 100) {
           updateSell(newPrice);
         }
         else {
-          updateSell(5);
+          updateSell(100);
         }
       }
     }
