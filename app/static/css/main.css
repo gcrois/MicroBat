@@ -1,105 +1,190 @@
-:root {
-  --dorange: #E27D60;
-  --lblue:   #85CDCA;
-  --lorange: #E8A87C;
-  --pinkle:  #C38D9E;
-  --turq:    #41B3A3;
-  --dark:    #324d4c;
-  --llblue:  #9df2f0;
+body, html {
+  background-image: url("../media/images/emrich-compressed.gif");
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+  margin: 0;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
-@font-face {
-  font-family: Bebas;
-  src: url(../fonts/BebasNeue-Book.ttf);
+body::after {
+  content: "";
+  background-image: url("../media/images/money.gif");
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
 }
 
-body {
-  font-family: 'Baloo Tamma 2', cursive;
-  background-color: var(--lblue);
+body::before {
+  content: "";
+  background-color: white;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -2;
 }
 
-.nav {
-  text-align: center
-}
-
-.square {
-  height: 50px;
-  width: 50px;
-  border-style: solid;
-  border-width: thin;
-  margin-bottom: 3px;
-}
-
-.dorange {
-  background-color: var(--dorange);
-}
-
-.lblue {
-  background-color: var(--lblue);
-}
-
-.lorange {
-  background-color: var(--lorange);
-}
-
-.pinkle {
-  background-color: var(--pinkle);
-}
-
-.turq {
-  background-color: var(--turq);
-}
-
-a, a:visited, a:link, a:active {
-  color: var(--dark);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration-color: var(--turq);
-  text-decoration: underline;
-}
-
-input {
-  background-color: var(--llblue);
-  color: var(--dark);
-}
-
-.header {
+.readout {
+  z-index: 2;
   text-align: center;
-  align-content: center;
-  font-size: 8vw;
-  font-family: Bebas;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-family: Arial, sans-serif;
 }
 
-.header.up {
-  font-size: 10vw;
+.subtitle {
+  font-size: 20px;
 }
 
-.logo {
-  width: 8vw;
-  height: 8vw;
-  fill: #94d31b;
-  margin-left: auto;
-  margin-right: auto;
+table.ui {
+  margin-left: calc(50% - 300px);
+  background-color: #28c432;
+  height: 100px;
+  max-width: 600px;
+  position: fixed;
+  opacity: .9;
 }
 
-.logo:hover {
-  fill: #94d31c;
-  transform: rotate(10deg);
+td.readout {
+  min-width: calc(600px / 3);
 }
 
-.subhead {
-  text-align: center;
-  text-transform: lowercase;
+#money {
+  vertical-align: middle;
+  font-size: 50px;
 }
 
-.top {
+.order-disp {
+  display: box;
+  position: absolute;
   width: 100%;
-  background-color: var(--lorange);
-  margin: -10px -10px -10px 0;
+  height: 20px;
+  opacity: 0.9;
 }
 
-.hov:hover, .header.up:hover{
-  color: gray;
+.drag {
+  display: box;
+  position: absolute;
+  width: 100%;
+  height: 10vh;
+  background-color: black !important;
+  z-index: 1;
+  opacity: 0.5 !important;
+}
+
+.drag:hover {
+  cursor: ns-resize;
+}
+
+.buy.drag {
+  margin-top: calc(70vh - 10vh);
+}
+
+.sell.drag {
+  margin-top: calc(30vh - 10vh);
+}
+
+.sell {
+  background-color:  green;
+}
+
+.buy {
+  margin-top: 70vh;
+  background-color: red;
+  opacity: .75;
+}
+
+.timer_box {
+  height: 50px;
+  width: 100px;
+  background-color: yellow;
+  display: block;
+  z-index: 2;
+  position: fixed;
+  margin-top: calc(100vh - 50px);
+  margin-left: calc(50vw - 50px);
+  text-align: center;
+  font-size: 35px;
+  padding-top: 5px;
+}
+
+#overall {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+}
+
+.disp {
+  position: fixed;
+  display: block;
+  width: 80vw;
+  max-height: 80vh;
+  margin-top: 3.5vh;
+  margin-left: calc(calc(100vw - 84vw) / 2);
+  margin-bottom: 13vh;
+  z-index: 3;
+  background-size: cover;
+  background-position: center;
+  padding: 2vw;
+  background-color: white;
+  border-style: outset;
+  border-radius: 8px;
+  border-width: 8px;
+  overflow-y: auto;
+}
+
+.letter {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.letter.salutation {
+  font-size: 3.5vw;
+}
+
+.letter.text {
+  text-indent: 30px;
+}
+
+.letter.signature {
+  position: relative;
+}
+
+#sign {
+  display:inline;
+  margin-left: 3vw;
+  padding:0px;
+}
+
+#name {
+  display: inline;
+  width: 50vw;
+  border: 0;
+  border-bottom: solid;
+  background-color: lightgray;
+}
+
+#submit {
+  float: right;
+  margin-right: 5vw;
 }
