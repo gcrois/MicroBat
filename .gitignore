@@ -2,3 +2,5 @@
 *.db
 *__pycache__
 venv*
+*.blend1
+render/*.png

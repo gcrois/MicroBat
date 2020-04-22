@@ -20,7 +20,7 @@ from app.models import User, Session, Poll
 @app.route('/')
 @app.route('/home')
 def home():
-    header = "Homepage for Microbat"
+    header = "Homepage";
     # This function is cool. Research it.
     return render_template('base.html', title='Home', header=header)
 
