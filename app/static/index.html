@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MicroBat Stocks</title>
+  <meta charset="UTF-8">
+  <script src="javascript/control.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="init()">
+  <span id="overall"></span>
+  <span class="disp" id="instructions">
+    <span class="letter salutation">TO MR./MRS. CONCERN, WHOM IT MAY:</span>
+    <p>&nbsp;</p>
+    <p class="letter text">
+      You have been drafted to be a part of DR. SCOTT EMRICH'S HEDGE FUND.
+      Many before you have tried and failed to appease DR. SCOTT EMRICH. This is not an easy task.
+      Maybe you should've thought about that before you got drafted.
+    </p>
+    <p class="letter text">
+      As you may know, DR. SCOTT EMRICH has recently completed his monopolistic takeover of all companies.
+      As a result of his ascension, there is only one stock. Set your BUY ORDER by dragging the red bar higher or lower.
+      Likewise, you can set your SELL ORDER by dragging the green bar. If your orders match somebody else's, a transaction will be made.
+    </p>
+    <p class="letter text">
+      Because the stock exchange is now running on PYTHON, orders can only be processed every 5 seconds.
+      See the timer on the bottom of the screen. When a transaction is completed, look at the menu at the top to see the values change.
+      The value that increases will be white for the remainder of that tick.
+    </p>
+    <p class="letter text">
+      Remember that taxes are due every 30 seconds to pay for the many great ammenities which DR. SCOTT EMRICH graciously provides.
+    </p>
+    <p class="letter text">
+      Good luck, sacrificial lamb - oh. One more thing. If your balance reaches $&nbsp;0.00, may DR. SCOTT EMRICH have mercy on your soul.
+    </p>
+    <p>&nbsp;</p>
+    <p class="letter signature">
+      Sign below to begin.
+      <br><br><br>
+      SIGNATURE:
+      <div id="sign" class="letter">
+        X&nbsp;<input type="text" id="name" autocomplete="off"></input>
+         <input type="submit" id="submit" value="Submit"></input>
+      </div>
+    </p>
+  </span>
+  <span class="order-disp sell" id="sell-disp"></span>
+  <span class="sell drag" id="sell-drag"></span>
+
+  <span class="buy drag" id="buy-drag"></span>
+  <span class="order-disp buy" id="buy-disp"></span>
+
+
+  <table class="ui">
+    <tr style="width:100%;">
+      <td class="readout" >
+        <span class="subtitle">Buy:</span>
+        <div id="buy_order"></div>
+      </td>
+      <td class="readout">
+        <span class="subtitle">Money:</span>
+        <div id="money"></div>
+      </td>
+      <td class="readout">
+        <span class="subtitle">Sell:</span>
+        <div id="sell_order"></div>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td class="readout">
+        <span class="subtitle">Stocks:</span>
+        <div id="stocks"></div>
+      </td>
+      <td></td>
+    </tr>
+  </table>
+  
+  <span class="timer_box" id="timer">5</span>
+</body>
+</html>
