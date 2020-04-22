@@ -35,8 +35,8 @@ def host():
             return redirect(url_for('hostPoll'))
         if form.greg.data:
             return redirect(url_for('greg'))
-        if form.tim.data:
-            return redirect(url_for('tim'))
+        if form.BlackJack.data:
+            return redirect(url_for('blackjack'))
 
 
     # This function is cool. Research it.
@@ -152,11 +152,11 @@ def greg():
 
     return render_template('base.html', title='Greg', header=header)
 
-@app.route('/tim')
-def tim():
-    header = "Tim's thing."
+#BlackJack Player view
+@app.route('/blackjack')
+def blackjack():
 
-    return render_template('base.html', title='Tim', header=header)
+    return render_template('blackjack_player.html')
 
 
 # For users.

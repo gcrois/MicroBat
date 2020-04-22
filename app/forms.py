@@ -11,7 +11,7 @@ class HostForm(FlaskForm):
 
     poll = SubmitField('Host a Poll')
     greg = SubmitField('Gregs thing')
-    tim = SubmitField('Tims thing')
+    BlackJack = SubmitField('BlackJack')
 
 ####  These are the forms for the polling app ####
 class PollForm(FlaskForm):
@@ -73,3 +73,8 @@ class RegisterForm(FlaskForm):
             u = User.query.filter_by(name = user.data).first()
             if u:
                 raise ValidationError('Username unavailable.')
+
+class PlayerForm(FlaskForm):
+    a = BooleanField()
+    b = BooleanField()
+    submit = SubmitField('Submit Response(s)')
