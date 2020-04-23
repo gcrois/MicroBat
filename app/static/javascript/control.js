@@ -186,7 +186,7 @@ function tick() {
     clock = d.getTime();
     clock_interval = setInterval(function(){ clock_count(); }, 100);
   }, 1000);
-    purchase(10);
+    purchase();
 }
 
 

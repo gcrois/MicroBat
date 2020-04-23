@@ -27,7 +27,7 @@ def home():
 @app.route('/host', methods=['GET', 'POST'])
 def host():
     header = "Hosting page for Microbat"
-    
+
     form = HostForm()
 
     if form.validate_on_submit():
@@ -147,6 +147,8 @@ def pollData(sesh_id):
 
 # These are the routes for your guy's stuff.
 @app.route('/greg')
+@app.route('/stock')
+@app.route('/stocks')
 def greg():
     return render_template("user.html")
 
