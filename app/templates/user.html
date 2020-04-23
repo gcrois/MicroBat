@@ -4,8 +4,8 @@
 <head>
   <title>MicroBat Stocks</title>
   <meta charset="UTF-8">
-  <script src="javascript/control.js"></script>
-  <link rel="stylesheet" href="css/main.css">
+  <script src={{ url_for('static', filename='javascript/control.js') }}></script>
+  <link rel="stylesheet" href={{ url_for('static', filename="css/stocks.css") }}>
 </head>
 
 <body onload="init()">
@@ -77,7 +77,7 @@
       <td></td>
     </tr>
   </table>
-  
+
   <span class="timer_box" id="timer">5</span>
 </body>
 </html>

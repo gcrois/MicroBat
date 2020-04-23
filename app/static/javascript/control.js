@@ -1,5 +1,5 @@
 // important per-user variables
-var money = 10;
+var money = 100;
 var buy = 30;
 var sell = 70;
 var stocks = 0;
@@ -47,8 +47,8 @@ function init() {
   stock_count = document.getElementById("stocks");
   timer = document.getElementById("timer");
 
-  lose = new sound("media/audio/you-lose.wav");
-  understand = new sound("media/audio/high-level.wav");
+  lose = new sound("../static/media/audio/you-lose.wav");
+  understand = new sound("../static/media/audio/high-level.wav");
 
   // set up events
   document.body.onmousedown = function() {
@@ -186,6 +186,7 @@ function tick() {
     clock = d.getTime();
     clock_interval = setInterval(function(){ clock_count(); }, 100);
   }, 1000);
+    purchase(10);
 }
 
 
@@ -205,7 +206,7 @@ function updateAll(){
 function consume() {
   let all = document.getElementById("overall");
   all.style.display = "block";
-  all.style["background-image"] = "url(media/images/consume.gif)";
+  all.style["background-image"] = "url(../static/media/images/consume.gif)";
   console.log(all.style);
   lose.play();
   setTimeout( () => {
@@ -256,7 +257,7 @@ function buyDragEnable(elmnt) {
     // move both if adjacent
     if (newPrice > (sell)) {
       // check that we aren't hiding sell
-      if ((100 - newPrice) > 5) {
+      if ((100 - newPrice) > .01) {
         updateBuy(newPrice);
         updateSell(newPrice + .01);
       }
