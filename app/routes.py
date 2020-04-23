@@ -20,15 +20,14 @@ from app.models import User, Session, Poll
 @app.route('/')
 @app.route('/home')
 def home():
-    header = "Homepage";
     # This function is cool. Research it.
-    return render_template('base.html', title='Home', header=header)
+    return render_template('home.html', title='Home')
 
 # Page for the hosting device.
 @app.route('/host', methods=['GET', 'POST'])
 def host():
     header = "Hosting page for Microbat"
-
+    
     form = HostForm()
 
     if form.validate_on_submit():
