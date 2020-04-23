@@ -149,9 +149,7 @@ def pollData(sesh_id):
 # These are the routes for your guy's stuff.
 @app.route('/greg')
 def greg():
-    header = "Greg's Thing."
-
-    return render_template('base.html', title='Greg', header=header)
+    return render_template("user.html")
 
 @app.route('/tim')
 def tim():
