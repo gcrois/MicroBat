@@ -9,4 +9,4 @@ from app.models import User, Answer, Session, Poll
 
 @app.shell_context_processor
 def make_shell_context():
-    return{'db': dataBase, 'User': User, 'Answer': Answer, 'Poll': Poll, 'Session' : Session}
+    return{'db': dataBase, 'User': User, 'Answer': Answer, 'Poll': Poll, 'Session' : Session, 'BlackJack' : BlackJack}

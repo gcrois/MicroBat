@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for
 from app import app
 from app import dataBase as db
 from app.forms import HostForm, PollForm, RegisterForm, JoinSessionForm, \
-                      ResponseForm, DataForm
+                      ResponseForm, DataForm, HostBlackJack
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Session, Poll
 
@@ -35,8 +35,8 @@ def host():
             return redirect(url_for('hostPoll'))
         if form.greg.data:
             return redirect(url_for('greg'))
-        if form.BlackJack.data:
-            return redirect(url_for('blackjack'))
+        if form.CreateBlackJack.data:
+            return redirect(url_for('create_blackjack'))
 
 
     # This function is cool. Research it.
@@ -153,10 +153,10 @@ def greg():
     return render_template('base.html', title='Greg', header=header)
 
 #BlackJack Player view
-@app.route('/blackjack')
-def blackjack():
-
-    return render_template('blackjack_player.html')
+@app.route('/create_blackjack', methods= ['GET', 'POST'])
+def create_blackjack():
+    form = HostBlackJack()
+    return render_template('create_blackjack.html', form = form)
 
 
 # For users.

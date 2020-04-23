@@ -11,7 +11,7 @@ class HostForm(FlaskForm):
 
     poll = SubmitField('Host a Poll')
     greg = SubmitField('Gregs thing')
-    BlackJack = SubmitField('BlackJack')
+    CreateBlackJack = SubmitField('BlackJack')
 
 ####  These are the forms for the polling app ####
 class PollForm(FlaskForm):
@@ -74,7 +74,15 @@ class RegisterForm(FlaskForm):
             if u:
                 raise ValidationError('Username unavailable.')
 
+#This finds out how much money the players start with
+
+class HostBlackJack(FlaskForm):
+    money = IntegerField('Money for Game',validators=[DataRequired()])
+    submit = SubmitField('Submit Response(s)')
+
+"""
 class PlayerForm(FlaskForm):
     a = BooleanField()
     b = BooleanField()
     submit = SubmitField('Submit Response(s)')
+"""
