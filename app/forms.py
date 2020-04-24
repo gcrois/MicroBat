@@ -78,7 +78,10 @@ class RegisterForm(FlaskForm):
 
 class HostBlackJack(FlaskForm):
     money = IntegerField('Money for Game',validators=[DataRequired()])
-    submit = SubmitField('Submit Response(s)')
+    sessionID = IntegerField('Session ID', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
 
 """
 class PlayerForm(FlaskForm):

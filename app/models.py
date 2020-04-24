@@ -85,37 +85,42 @@ class Answer(db.Model):
     def __repr__(self):
         return 'Answer: {}'.format(self.ans)
 
+
+"""
+#This is a player class hopefully It will work.
+class Player(db.Model): 
+    money = db.Column(db.Integer) 
+    session_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(20), nullable = True, primary_key = True) 
+    cards = db.Column(db.ARRAY(db.Integer))
+    deck = db.Column(db.ARRAY(db.Integer))
+    score = db.Column(db.Integer)
+    bet = db.Column(db.Integer)
+    busted = db.Column(db.Integer)
+    stay = db.Column(db.Integer)
+    def __init__( self, money, id, deck):
+        self.money = money
+        self.id = id
+        self.cards = []
+        self.deck = deck
+        self.standing = 0
+        self.bet = 0
+        self.busted = False
+        self.stay = False"""
+       
+
 class BlackJack(db.Model):
     
 #IDK what a size_t is in the DB, but if they put a negative number 
 #in Black Jack it's gunna have an aneurysm
-    money = db.Column('game money',db.Integer, primary_key = True )
-    """def __init__(self, money):
+    money = db.Column('Game Money',db.Integer, primary_key = True )
+    """deck = db.Column('Deck of Cards', db.ARRAY(db.Integer, as_tuple=True, dimensions=52, zero_indexes=True))
+    players = db.Column('Players', **Player)
+    def __init__(self, money, deck, players):
+        self.players = players
         self.deck = [0]*52
-        self.money = 50
-        self.dealer = Dealer("Jeeves",self.deck)
+        self.money = money
+        self.dealer = Dealer("Jeeves",self.deck)"""
  
-
-#This is a player class hopefully It will work.
-class Player(db.Model): 
-    money = db.Column(db.Integer) 
-    session_id = db.Column(db.Integer, primary_key=True
-	id = db.Column(db.String(20), nullable = True) 
-	cards = db.Column(db.ARRAY(Integer))
-	deck = db.Column(db.ARRAY(Integer))
-	score = db.Column(db.Integer)
-	bet = db.Column(db.Integer)
-	busted = db.Column(db.Integer)
-	stay = db.Column(db.Integer)
-    def __init__( self, money, id, deck):
-    	self.money = money
-		self.id = name
-		self.cards = []
-		self.deck = deck
-		self.standing = 0
-		self.bet = 0
-		self.busted = False
-		self.stay = False
-       """
 
 db.create_all()
