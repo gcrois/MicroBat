@@ -13,14 +13,10 @@ from app.models import User, Session, Poll
 # execute when the url specified in the .routes() function
 # is evoked.
 
-# Right now it returns a neat function you should research.
-# Essentially we can define templated HTML(and CSS) that Flask
-# will change dynamically for us. Check the arguments I've passed
-# in and look at app/templates/temp.html
+# Homepage.
 @app.route('/')
 @app.route('/home')
 def home():
-    # This function is cool. Research it.
     return render_template('home.html', title='Home')
 
 # Page for the hosting device.
@@ -38,8 +34,6 @@ def host():
         if form.tim.data:
             return redirect(url_for('tim'))
 
-
-    # This function is cool. Research it.
     return render_template('host.html', title='Host', header=header, form=form)
 
 # This is the route for hosting a poll
@@ -49,12 +43,9 @@ def hostPoll():
 
     form = PollForm()
 
-    print("We're in host poll")
-
     if form.validate_on_submit():
         # We need to create the session and the poll, then link them
         # together.
-        print("Form submitted")
         sesh = Session(session_id = form.sessionID.data)
         poll = Poll(question = form.questionText.data)
 
@@ -90,6 +81,7 @@ def hostPoll():
 
     return render_template('create_poll.html', title='Host a Poll', header=header, form=form)
 
+# Page for displaying polling data to the host.
 @app.route('/pollData/<sesh_id>', methods=["GET", "POST"])
 def pollData(sesh_id):
     header = "Polling Data"
@@ -106,8 +98,6 @@ def pollData(sesh_id):
     b_perc = 0
     c_perc = 0
     d_perc = 0
-
-    print(poll.a_num)
 
     if poll.a_num > 0:
         a_perc = round((poll.a_num / total_count)*100, 2)

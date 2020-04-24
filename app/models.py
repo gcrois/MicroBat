@@ -20,6 +20,9 @@ from flask_login import UserMixin
 def load_user(id):
     return User.query.get(int(id))
 
+# A Session is how we compartmentalize apps and associated users.
+# Each session is corelated to a number of users and a single application
+# instance.
 class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     session_id = db.Column(db.String(64), index=True, unique=True)
@@ -28,6 +31,7 @@ class Session(db.Model):
     users = db.relationship('User', backref='session', lazy=True)
     poll = db.relationship("Poll", uselist=False, back_populates='session')
 
+# Database object for a poll table entry.
 class Poll(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(64), index=True)
@@ -43,7 +47,7 @@ class Poll(db.Model):
     a_num = db.Column(db.Integer)
     b_num = db.Column(db.Integer)
     c_num = db.Column(db.Integer)
-    d_num = db.Column(db.Integer) 
+    d_num = db.Column(db.Integer)
 
 class User(UserMixin, db.Model):
     # Primary Key means this is a unique value - Meaning all

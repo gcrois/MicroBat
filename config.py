@@ -1,6 +1,7 @@
+# This file houses our configurations for various libraries.
+
 import os
 
-# I have no real clue what this does yet.
 class Config(object):
     # WTform stuff. I think it's security-related.
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'this-is-the-key'

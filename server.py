@@ -1,4 +1,5 @@
-# This file is anemic for now, but it'll get bigger.
+# All this file does is give us access to a flask shell. 
+
 from app import app, dataBase
 from app.models import User, Answer, Session, Poll
 
