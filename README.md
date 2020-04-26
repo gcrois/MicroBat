@@ -37,6 +37,14 @@ Now, go to the root directory of the project and run
 
 Good luck.
 
+-- TO USE --
+
+To host a session of the survey, click the "Host A Session" section and follow the instructions.
+
+The prototype Stock game is labelled "Greg's Thing".
+
+Enjoy!
+
 HALL OF QUOTES:
 
 I've added a tenative file structure to be discussed at a later date.<br><br>
